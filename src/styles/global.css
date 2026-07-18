@@ -115,3 +115,29 @@ a { color: var(--color-primario); }
 @media (max-width: 480px) {
   .hero { min-height: 60vh; }
 }
+
+/* Secciones genéricas */
+.seccion { padding-block: 4rem; }
+.seccion__titulo {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 2rem;
+  text-align: center;
+}
+
+/* CTA Discord reutilizable */
+.cta-discord {
+  padding-block: 4rem;
+  text-align: center;
+}
+.cta-discord__boton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--radio);
+  background: var(--color-primario);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.cta-discord__boton:hover { filter: brightness(1.08); }
