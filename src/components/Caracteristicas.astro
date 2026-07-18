@@ -1,0 +1,17 @@
+---
+import { servidor } from '../config/servidor';
+const items = servidor.caracteristicas;
+---
+{items.length > 0 && (
+  <section class="seccion caracteristicas contenedor" id="caracteristicas">
+    <h2 class="seccion__titulo">Lo que nos hace distintos</h2>
+    <div class="caracteristicas__grid">
+      {items.map((c) => (
+        <article class="tarjeta">
+          <h3 class="tarjeta__titulo">{c.titulo}</h3>
+          <p class="tarjeta__texto">{c.texto}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+)}

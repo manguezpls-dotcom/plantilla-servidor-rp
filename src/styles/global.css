@@ -141,3 +141,18 @@ a { color: var(--color-primario); }
   text-decoration: none;
 }
 .cta-discord__boton:hover { filter: brightness(1.08); }
+
+/* Características */
+.caracteristicas__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+.tarjeta {
+  padding: 1.5rem;
+  border-radius: var(--radio);
+  background: color-mix(in srgb, var(--color-texto) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-texto) 10%, transparent);
+}
+.tarjeta__titulo { margin: 0 0 0.5rem; font-size: 1.15rem; }
+.tarjeta__texto { margin: 0; opacity: 0.85; }
