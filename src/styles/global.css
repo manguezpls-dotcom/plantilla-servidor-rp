@@ -184,3 +184,26 @@ a { color: var(--color-primario); }
 }
 .faq__pregunta::-webkit-details-marker { display: none; }
 .faq__respuesta { margin: 0 0 1rem; opacity: 0.85; }
+
+/* Staff */
+.staff__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+}
+.miembro__avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-inline: auto;
+  display: grid; place-items: center;
+}
+.miembro__avatar--iniciales {
+  background: var(--color-primario);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.miembro__nombre { margin: 0.75rem 0 0.15rem; font-size: 1.05rem; }
+.miembro__rol { margin: 0; opacity: 0.7; font-size: 0.9rem; }
