@@ -3,7 +3,6 @@
   --radio: 12px;
   --fuente: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --ancho-max: 1120px;
-  --espacio: 1rem;
   /* --color-primario / --color-fondo / --color-texto los inyecta Base.astro */
 }
 

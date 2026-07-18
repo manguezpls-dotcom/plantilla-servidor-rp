@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import { servidor } from '../config/servidor';
 import { variablesTema, estiloInline } from '../lib/tokens';
-import { tieneLogo } from '../lib/fallbacks';
+import { tieneLogo, tieneImagenHero } from '../lib/fallbacks';
 
 interface Props {
   titulo?: string;
@@ -14,10 +14,11 @@ const tituloPagina = titulo
   ? `${titulo} · ${servidor.nombre}`
   : `${servidor.nombre} · ${servidor.lema}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImagen = servidor.imagenHero
-  ? new URL(servidor.imagenHero, Astro.site)
+const ogImagen = tieneImagenHero(servidor)
+  ? new URL(servidor.imagenHero!, Astro.site)
   : undefined;
 const marca = tieneLogo(servidor) ? servidor.logo! : null;
+const favicon = tieneLogo(servidor) ? servidor.logo! : '/favicon.svg';
 ---
 <!doctype html>
 <html lang="es">
@@ -32,7 +33,7 @@ const marca = tieneLogo(servidor) ? servidor.logo! : null;
     <meta property="og:description" content={servidor.descripcion} />
     <meta property="og:url" content={canonical} />
     {ogImagen && <meta property="og:image" content={ogImagen} />}
-    <link rel="icon" href={servidor.logo ?? '/favicon.svg'} />
+    <link rel="icon" href={favicon} />
     <style set:html={rootStyle}></style>
   </head>
   <body>
