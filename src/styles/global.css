@@ -236,3 +236,25 @@ a { color: var(--color-primario); }
   .cabecera { flex-wrap: wrap; }
   .cabecera__nav { order: 3; width: 100%; justify-content: center; margin-top: 0.75rem; }
 }
+
+/* Normas */
+.normas__layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+.normas__indice {
+  position: sticky;
+  top: 1.5rem;
+}
+.normas__indice ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.normas__indice a { text-decoration: none; opacity: 0.85; }
+.normas__indice a:hover { opacity: 1; }
+.norma { scroll-margin-top: 1.5rem; margin-bottom: 2.5rem; }
+.norma h2 { margin-top: 0; }
+
+@media (max-width: 720px) {
+  .normas__layout { grid-template-columns: 1fr; }
+  .normas__indice { position: static; }
+}
