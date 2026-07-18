@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .astro/
+.claude/
 graphify-out/
 .env
 .env.*
