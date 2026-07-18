@@ -217,3 +217,22 @@ a { color: var(--color-primario); }
 }
 .redes__enlace { font-weight: 600; text-decoration: none; }
 .redes__enlace:hover { text-decoration: underline; }
+
+/* Nav header */
+.cabecera__nav {
+  display: flex;
+  gap: 1.1rem;
+  margin-inline: auto;
+}
+.cabecera__enlace {
+  color: var(--color-texto);
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0.85;
+}
+.cabecera__enlace:hover { opacity: 1; }
+
+@media (max-width: 560px) {
+  .cabecera { flex-wrap: wrap; }
+  .cabecera__nav { order: 3; width: 100%; justify-content: center; margin-top: 0.75rem; }
+}

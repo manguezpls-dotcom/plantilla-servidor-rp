@@ -42,6 +42,11 @@ const favicon = tieneLogo(servidor) ? servidor.logo! : '/favicon.svg';
       <a class="cabecera__marca" href="/">
         {marca ? <img src={marca} alt={servidor.nombre} height="32" /> : servidor.nombre}
       </a>
+      <nav class="cabecera__nav" aria-label="Principal">
+        <a class="cabecera__enlace" href="/">Inicio</a>
+        <a class="cabecera__enlace" href="/normas/">Normas</a>
+        <a class="cabecera__enlace" href="/staff/">Staff</a>
+      </nav>
       <a class="cabecera__discord" href={servidor.urlDiscord}>Discord</a>
     </header>
 
