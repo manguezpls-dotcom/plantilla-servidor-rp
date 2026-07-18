@@ -78,8 +78,10 @@ Nuevos (de la review holística de frontera F2):
   enlace del nav cuando la sección esté vacía.
 
 Heredados de F1 (revisar en F3):
-- **Guía de deploy:** README y `servidor.ts` dicen "Cloudflare Pages", pero la demo está
-  en **Workers**. Reconciliar en la guía bilingüe de F3.
+- **Guía de deploy:** README ya reconciliado (2026-07-18: documenta Pages recomendado +
+  Workers alternativa, y el paso de fijar `site`). Falta: el comentario de cabecera de
+  `servidor.ts` aún dice "Cloudflare Pages publicará tu web", y la guía bilingüe paso a
+  paso con capturas es de F3.
 - **"Único fichero" no es literal:** el usuario aguas abajo también debe fijar `site` en
   `astro.config.mjs` para que canonical/OG apunten a SU dominio. Documentar en la guía.
 - **Sanitización de `set:html`:** colores de la config se interpolan en `<style>` sin
