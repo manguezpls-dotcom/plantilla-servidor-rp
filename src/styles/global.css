@@ -1,0 +1,118 @@
+:root {
+  /* Tokens fijos de la plantilla (no vienen de la config). */
+  --radio: 12px;
+  --fuente: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --ancho-max: 1120px;
+  --espacio: 1rem;
+  /* --color-primario / --color-fondo / --color-texto los inyecta Base.astro */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--color-primario); }
+
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Header */
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.1rem;
+}
+.cabecera__marca {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+.cabecera__discord {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radio);
+  background: var(--color-primario);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 68vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background-image: var(--fondo-hero);
+  background-size: cover;
+  background-position: center;
+  padding-block: 4rem;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, var(--color-fondo));
+  opacity: 0.55;
+}
+.hero__contenido {
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+  padding-inline: 1.25rem;
+}
+.hero__titulo {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.75rem;
+}
+.hero__lema {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  opacity: 0.9;
+  margin: 0 0 2rem;
+}
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--radio);
+  background: var(--color-primario);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+.hero__cta:hover { filter: brightness(1.08); }
+
+/* Footer */
+.pie {
+  padding-block: 2.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+.pie a { font-weight: 600; }
+
+@media (max-width: 480px) {
+  .hero { min-height: 60vh; }
+}
