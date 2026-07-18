@@ -1,0 +1,10 @@
+{
+  // Despliegue en Cloudflare Workers (static assets).
+  // Cada fork despliega bajo su propia cuenta: no hace falta cambiar nada aquí,
+  // aunque puedes personalizar "name" (será tu URL: <name>.<tu-cuenta>.workers.dev).
+  "name": "plantilla-servidor-rp",
+  "compatibility_date": "2026-07-17",
+  "assets": {
+    "directory": "./dist"
+  }
+}
