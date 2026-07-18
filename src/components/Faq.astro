@@ -1,0 +1,20 @@
+---
+import { servidor } from '../config/servidor';
+import { faqPageSchema } from '../lib/faqSchema';
+const items = servidor.faq;
+const schema = faqPageSchema(items);
+---
+{items.length > 0 && (
+  <section class="seccion faq contenedor" id="faq">
+    <h2 class="seccion__titulo">Preguntas frecuentes</h2>
+    <div class="faq__lista">
+      {items.map((item) => (
+        <details class="faq__item">
+          <summary class="faq__pregunta">{item.pregunta}</summary>
+          <p class="faq__respuesta">{item.respuesta}</p>
+        </details>
+      ))}
+    </div>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </section>
+)}
