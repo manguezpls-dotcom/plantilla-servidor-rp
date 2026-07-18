@@ -59,9 +59,11 @@ FiveM/GTA RP. Web config-driven en Astro 5: el admin edita un único fichero
   `/normas/` con 3 normas markdown + índice con anclajes coincidentes + énfasis renderizado;
   `/staff/` con 3 miembros con iniciales; responsive 375px sin scroll horizontal, nav a
   ancho completo, grids a 1 columna; consola y logs del servidor limpios.
-  **Pendiente:** capturas (Step 7 del plan) dieron timeout del renderer del entorno; la
-  funcionalidad quedó verificada por árbol de accesibilidad + mediciones JS. **Falta el
-  smoke del usuario sobre la demo desplegada** (tras el deploy de F2).
+  Capturas (Step 7 del plan) dieron timeout del renderer del entorno; la funcionalidad
+  quedó verificada por árbol de accesibilidad + mediciones JS.
+- **Smoke de la demo desplegada: OK (usuario, 2026-07-18).** Salvedad a confirmar en el
+  arranque de F3: verificar que la demo (Workers) sirve ya el contenido de F2 (redeploy si
+  Workers no está conectado a Git para auto-desplegar desde `main`).
 - Ejecución: subagent-driven-development (implementer Sonnet + doble review Opus por task:
   spec + calidad) y **review holística de frontera (Opus) sobre el diff completo de la
   rama: APROBADA, sin críticos ni importantes.**
