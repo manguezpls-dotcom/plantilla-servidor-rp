@@ -12,7 +12,7 @@ const { titulo } = Astro.props;
 const rootStyle = `:root{${estiloInline(variablesTema(servidor))}}`;
 const tituloPagina = titulo
   ? `${titulo} · ${servidor.nombre}`
-  : `${servidor.nombre} — ${servidor.lema}`;
+  : `${servidor.nombre} · ${servidor.lema}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImagen = servidor.imagenHero
   ? new URL(servidor.imagenHero, Astro.site)
