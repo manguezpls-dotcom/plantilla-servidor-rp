@@ -156,3 +156,14 @@ a { color: var(--color-primario); }
 }
 .tarjeta__titulo { margin: 0 0 0.5rem; font-size: 1.15rem; }
 .tarjeta__texto { margin: 0; opacity: 0.85; }
+
+/* Cómo entrar */
+.entrada__pasos {
+  max-width: 40rem;
+  margin: 0 auto 2rem;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.75rem;
+}
+.entrada__paso { padding-left: 0.25rem; }
+.entrada__cta { text-align: center; }
