@@ -17,58 +17,87 @@ FiveM/GTA RP. Web config-driven en Astro 5: el admin edita un único fichero
 | Fase | Alcance | Estado |
 |---|---|---|
 | **F1 · Esqueleto** | Repo, Astro, config tipada con ejemplo completo, Base + Hero + footer con crédito, demo desplegada | ✅ Completa (2026-07-18) |
-| **F2 · Secciones** | Características, cómo entrar (bifurcación whitelist/directo), normas desde markdown con índice, staff, FAQ (schema FAQPage), redes | ⏳ Siguiente |
-| **F3 · Pulido y lanzamiento** | SEO completo (sitemap/robots), Lighthouse ≥95, README bilingüe EN/ES con guía paso a paso, capturas, borrador del post de release para el foro Cfx | ⬜ Pendiente |
+| **F2 · Secciones** | Características, cómo entrar (bifurcación whitelist/directo), normas desde markdown con índice, staff, FAQ (schema FAQPage), redes, nav | ✅ Completa (2026-07-18) |
+| **F3 · Pulido y lanzamiento** | SEO completo (sitemap/robots), Lighthouse ≥95, README bilingüe EN/ES con guía paso a paso, capturas, borrador del post de release para el foro Cfx | ⏳ Siguiente |
 
-## Arquitectura (F1)
+## Arquitectura (F1 + F2)
 
-- **Stack:** Astro 5 estático, TypeScript strict, Vitest para lógica pura. Sin JS de
-  cliente. Fuente = stack de sistema (sin dependencias externas; `@fontsource` llega en F2).
+- **Stack:** Astro 5 estático, TypeScript strict, Vitest para lógica pura. **Sin JS de
+  cliente** (FAQ con `<details>` nativo; nav sin hamburguesa). Fuente = stack de sistema
+  (sin dependencias externas; `@fontsource` sigue siendo opcional, aparcado para F3).
 - **Contrato cerrado:** `interface ConfigServidor` en `src/config/servidor.ts`. NO
   modificar sin cambiar el plano en `vidaenleonida/docs/linea-c/01`. Solo `colores`
   viene de la config; `--radio` y `--fuente` son tokens fijos de la plantilla en
-  `global.css` (el contrato no los expone).
-- **Robustez ("nunca se ve rota"):** todo opcional degrada con elegancia. Helpers en
-  `src/lib/fallbacks.ts` (`tieneLogo`, `tieneImagenHero`, `gradienteHero`). El ejemplo
-  deja `logo`/`imagenHero` sin definir a propósito para demostrarlo (wordmark + gradiente).
-- **Tema:** `src/lib/tokens.ts` deriva las custom properties de color de la config;
-  `Base.astro` las inyecta en `:root`.
+  `global.css` (el contrato no los expone). **F2 no tocó el contrato** (verificado en la
+  review de frontera).
+- **Degradación elegante ("nunca se ve rota"):** todo opcional degrada. Cada sección se
+  autooculta si su dato está vacío (guardas `length > 0` en Caracteristicas, ComoEntrar,
+  Faq, Staff; `redesActivas` para Redes). Helpers de fallback de F1 en `src/lib/fallbacks.ts`.
+- **Lógica pura (TDD, `src/lib/`):** `entrada.ts` (`ctaEntrada` → CTA bifurcada
+  whitelist/directo), `redes.ts` (`redesActivas` → redes presentes en orden fijo
+  x→tiktok→youtube→instagram), `faqSchema.ts` (`faqPageSchema` → JSON-LD FAQPage). Más
+  los de F1: `tokens.ts`, `fallbacks.ts`.
+- **Contenido:** colección `normas` (Astro content collection, glob loader) en
+  `src/content.config.ts` + `src/content/normas/*.md`. La página `normas.astro` ordena por
+  `orden` y monta índice lateral sticky con anclajes = `id` del fichero.
+- **Componentes de sección:** `CtaDiscord`, `Caracteristicas`, `ComoEntrar`, `Faq`,
+  `Staff` (avatar o iniciales), `Redes`. Todo el CSS en `src/styles/global.css` (BEM).
+- **Layout:** `Base.astro` con nav en header (Inicio/Normas/Staff, rutas con trailing
+  slash) y `<Redes/>` en el footer. `trailingSlash: 'always'`.
+- **Páginas:** `index.astro` (Hero + Caracteristicas + ComoEntrar + Faq + CtaDiscord),
+  `normas.astro`, `staff.astro`.
 
-## Verificación (F1, 2026-07-18)
+## Verificación (F2, 2026-07-18)
 
-- Tests: 8/8 verdes (`npm test` — tokens 2, fallbacks 6).
-- `astro check`: 0 errores / 0 warnings / 0 hints.
-- `npm run build`: OK, 1 página.
-- Smoke navegador (dev + demo desplegada): home carga, hero con gradiente fallback,
-  wordmark, CTA a Discord, footer con crédito, responsive 375px sin scroll horizontal,
-  consola limpia. Smoke de la demo desplegada: OK (usuario, 2026-07-18).
-- Code review de frontera (Opus, holístico): sin críticos. Arreglados: helpers de
-  robustez en favicon/og de Base, token muerto `--espacio`. Resto anotado abajo.
+- Tests: **17/17 verdes** (`npm test` — tokens 2, fallbacks 6, entrada 3, redes 4, faqSchema 2).
+- `astro check`: 0 errores / 0 warnings / 1 hint (esperado: `is:inline` del `<script>`
+  JSON-LD en `Faq.astro`; comportamiento buscado, sin JS de cliente).
+- `npm run build`: OK, 3 páginas (`/`, `/normas/`, `/staff/`).
+- Smoke navegador (dev, puerto 4322): home completa (nav, hero, 4 características,
+  4 pasos + CTA "Solicitar plaza", 3 FAQ, CtaDiscord, footer con redes X/TikTok/YouTube +
+  crédito); acordeón FAQ abre/cierra (nativo); JSON-LD `FAQPage` con 3 preguntas;
+  `/normas/` con 3 normas markdown + índice con anclajes coincidentes + énfasis renderizado;
+  `/staff/` con 3 miembros con iniciales; responsive 375px sin scroll horizontal, nav a
+  ancho completo, grids a 1 columna; consola y logs del servidor limpios.
+  **Pendiente:** capturas (Step 7 del plan) dieron timeout del renderer del entorno; la
+  funcionalidad quedó verificada por árbol de accesibilidad + mediciones JS. **Falta el
+  smoke del usuario sobre la demo desplegada** (tras el deploy de F2).
+- Ejecución: subagent-driven-development (implementer Sonnet + doble review Opus por task:
+  spec + calidad) y **review holística de frontera (Opus) sobre el diff completo de la
+  rama: APROBADA, sin críticos ni importantes.**
 
-## Pendientes anotados (de la review de frontera; abordar en F2/F3)
+## Pendientes anotados (abordar en F3 salvo indicación)
 
-- **Guía de deploy (F3):** el texto de `README.md` y `servidor.ts` dice "Cloudflare
-  Pages" (decisión de arquitectura), pero la demo se desplegó en **Workers**. Reconciliar
-  en la guía de F3: documentar el camino (Pages o Workers) de forma coherente.
-- **"Único fichero" no es literal (F3):** el usuario aguas abajo también debe fijar
-  `site` en `astro.config.mjs` para que canonical/OG apunten a SU dominio (si no,
-  apuntan a la demo). Documentarlo en la guía de deploy, o buscar forma de derivarlo.
-- **Sanitización de `set:html` (F2/F3):** los valores de color de la config se
-  interpolan en `<style>` sin escapar. Riesgo bajo (config = autor), pero valorar
-  validar hex en el contrato o usar `define:vars`.
-- **Footer vacío con `creditoPlantilla:false`:** deja una banda con padding. Al añadir
-  redes al footer en F2, gatear el render del `<footer>` a que haya contenido.
-- **Logo como favicon:** `Base.astro` usa el logo tal cual como favicon; un wordmark
-  ancho se ve distorsionado. Cosmético; valorar en F3.
-- **Bootstrap Graphify:** pendiente `graphify install` + `graphify .` (norma de proyecto
-  nuevo). Requiere Ollama local (ver memoria graphify-local-ollama-build). `graphify-out/`
-  ya está en `.gitignore`.
+Nuevos (de la review holística de frontera F2):
+- **Botón primario duplicado 3×:** `.hero__cta`, `.cta-discord__boton`, `.cabecera__discord`
+  comparten patrón casi idéntico en `global.css`. `ComoEntrar` ya reutiliza
+  `.cta-discord__boton`. Valorar extraer un primitivo `.boton` en F3 para evitar deriva.
+- **Páginas que pueden quedar "desnudas":** si `staff` (o la colección `normas`) queda
+  vacía, `/staff/` (o `/normas/`) renderiza un `<main>` vacío mientras el nav sigue
+  enlazándolas. Coherente con el contrato de degradación; documentar/valorar ocultar el
+  enlace del nav cuando la sección esté vacía.
+
+Heredados de F1 (revisar en F3):
+- **Guía de deploy:** README y `servidor.ts` dicen "Cloudflare Pages", pero la demo está
+  en **Workers**. Reconciliar en la guía bilingüe de F3.
+- **"Único fichero" no es literal:** el usuario aguas abajo también debe fijar `site` en
+  `astro.config.mjs` para que canonical/OG apunten a SU dominio. Documentar en la guía.
+- **Sanitización de `set:html`:** colores de la config se interpolan en `<style>` sin
+  escapar; el JSON-LD del FAQ usa `set:html={JSON.stringify(schema)}` (seguro con config de
+  confianza, sin `</script>`). Riesgo bajo (config = autor); valorar validar hex en el
+  contrato o `define:vars`.
+- **Footer con `creditoPlantilla:false` y sin redes:** deja una banda con padding. F2 metió
+  `<Redes/>` (que se autooculta), pero el `<footer>` no está gateado a que haya contenido.
+- **Logo como favicon:** un wordmark ancho se ve distorsionado. Cosmético.
+- **Bootstrap Graphify:** pendiente `graphify install` + `graphify .` (requiere Ollama
+  local, ver memoria graphify-local-ollama-build). `graphify-out/` ya en `.gitignore`.
 - **npm audit:** 6 vulnerabilidades en transitivas de devDependencies (toolchain build).
   Sin superficie en runtime estático. Revisar en F3.
 
 ## Próximo arranque
 
-Siguiente = **F2 · Secciones**. Plan detallado en
-`docs/superpowers/plans/` (escribir con superpowers `writing-plans` justo antes de
-ejecutar, reflejando el código real). Sugerido: sesión nueva para refrescar contexto
-(mejor cache hit ratio). Modelos: subagentes Sonnet para código, Opus para review/testing.
+Siguiente = **F3 · Pulido y lanzamiento**. Escribir el plan detallado con superpowers
+`writing-plans` justo antes de ejecutar, reflejando el código real. Sugerido: **sesión
+nueva** para refrescar contexto (mejor cache hit ratio). Modelos: subagentes Sonnet para
+código, Opus para review. Primer entregable natural de F3: reconciliar la guía de deploy
+(Pages vs Workers) + README bilingüe, y desplegar F2 para el smoke del usuario sobre la demo.
