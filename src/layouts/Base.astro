@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { servidor } from '../config/servidor';
 import { variablesTema, estiloInline } from '../lib/tokens';
 import { tieneLogo, tieneImagenHero } from '../lib/fallbacks';
+import Redes from '../components/Redes.astro';
 
 interface Props {
   titulo?: string;
@@ -49,6 +50,7 @@ const favicon = tieneLogo(servidor) ? servidor.logo! : '/favicon.svg';
     </main>
 
     <footer class="pie contenedor">
+      <Redes />
       {servidor.creditoPlantilla && (
         <p>
           Hecho con la <a href="https://vidaenleonida.com" rel="noopener">plantilla de VidaEnLeonida.com</a>

@@ -207,3 +207,13 @@ a { color: var(--color-primario); }
 }
 .miembro__nombre { margin: 0.75rem 0 0.15rem; font-size: 1.05rem; }
 .miembro__rol { margin: 0; opacity: 0.7; font-size: 0.9rem; }
+
+/* Redes */
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+.redes__enlace { font-weight: 600; text-decoration: none; }
+.redes__enlace:hover { text-decoration: underline; }

@@ -1,0 +1,12 @@
+---
+import { servidor } from '../config/servidor';
+import { redesActivas } from '../lib/redes';
+const redes = redesActivas(servidor.redes);
+---
+{redes.length > 0 && (
+  <nav class="redes" aria-label="Redes sociales">
+    {redes.map((r) => (
+      <a class="redes__enlace" href={r.url} rel="noopener">{r.etiqueta}</a>
+    ))}
+  </nav>
+)}
