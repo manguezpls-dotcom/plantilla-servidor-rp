@@ -1,0 +1,17 @@
+---
+import { servidor } from '../config/servidor';
+import { ctaEntrada } from '../lib/entrada';
+const pasos = servidor.pasosEntrada;
+const cta = ctaEntrada(servidor);
+---
+{pasos.length > 0 && (
+  <section class="seccion entrada contenedor" id="como-entrar">
+    <h2 class="seccion__titulo">Cómo entrar</h2>
+    <ol class="entrada__pasos">
+      {pasos.map((paso) => <li class="entrada__paso">{paso}</li>)}
+    </ol>
+    <div class="entrada__cta">
+      <a class="cta-discord__boton" href={cta.url}>{cta.texto}</a>
+    </div>
+  </section>
+)}

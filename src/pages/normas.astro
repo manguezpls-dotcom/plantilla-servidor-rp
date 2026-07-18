@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const entradas = (await getCollection('normas')).sort(
+  (a, b) => a.data.orden - b.data.orden
+);
+const render_ = await Promise.all(entradas.map(async (e) => ({
+  id: e.id,
+  titulo: e.data.titulo,
+  Content: (await render(e)).Content,
+})));
+---
+<Base titulo="Normas">
+  <section class="seccion normas contenedor">
+    <h1 class="seccion__titulo">Normas</h1>
+    <div class="normas__layout">
+      <nav class="normas__indice" aria-label="Índice de normas">
+        <ul>
+          {render_.map((n) => <li><a href={`#${n.id}`}>{n.titulo}</a></li>)}
+        </ul>
+      </nav>
+      <div class="normas__contenido">
+        {render_.map((n) => (
+          <article class="norma" id={n.id}>
+            <h2>{n.titulo}</h2>
+            <n.Content />
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

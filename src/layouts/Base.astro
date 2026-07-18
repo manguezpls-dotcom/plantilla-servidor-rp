@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { servidor } from '../config/servidor';
 import { variablesTema, estiloInline } from '../lib/tokens';
 import { tieneLogo, tieneImagenHero } from '../lib/fallbacks';
+import Redes from '../components/Redes.astro';
 
 interface Props {
   titulo?: string;
@@ -41,6 +42,11 @@ const favicon = tieneLogo(servidor) ? servidor.logo! : '/favicon.svg';
       <a class="cabecera__marca" href="/">
         {marca ? <img src={marca} alt={servidor.nombre} height="32" /> : servidor.nombre}
       </a>
+      <nav class="cabecera__nav" aria-label="Principal">
+        <a class="cabecera__enlace" href="/">Inicio</a>
+        <a class="cabecera__enlace" href="/normas/">Normas</a>
+        <a class="cabecera__enlace" href="/staff/">Staff</a>
+      </nav>
       <a class="cabecera__discord" href={servidor.urlDiscord}>Discord</a>
     </header>
 
@@ -49,6 +55,7 @@ const favicon = tieneLogo(servidor) ? servidor.logo! : '/favicon.svg';
     </main>
 
     <footer class="pie contenedor">
+      <Redes />
       {servidor.creditoPlantilla && (
         <p>
           Hecho con la <a href="https://vidaenleonida.com" rel="noopener">plantilla de VidaEnLeonida.com</a>

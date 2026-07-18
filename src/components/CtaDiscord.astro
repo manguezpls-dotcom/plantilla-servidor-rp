@@ -1,0 +1,12 @@
+---
+import { servidor } from '../config/servidor';
+
+interface Props {
+  titulo?: string;
+}
+const { titulo = '¿Listo para empezar?' } = Astro.props;
+---
+<section class="cta-discord contenedor">
+  <h2 class="seccion__titulo">{titulo}</h2>
+  <a class="cta-discord__boton" href={servidor.urlDiscord}>Únete al Discord</a>
+</section>
