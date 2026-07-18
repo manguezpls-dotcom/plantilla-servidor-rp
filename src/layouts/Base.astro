@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import { servidor } from '../config/servidor';
+import { variablesTema, estiloInline } from '../lib/tokens';
+import { tieneLogo } from '../lib/fallbacks';
+
+interface Props {
+  titulo?: string;
+}
+const { titulo } = Astro.props;
+
+const rootStyle = `:root{${estiloInline(variablesTema(servidor))}}`;
+const tituloPagina = titulo
+  ? `${titulo} · ${servidor.nombre}`
+  : `${servidor.nombre} — ${servidor.lema}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImagen = servidor.imagenHero
+  ? new URL(servidor.imagenHero, Astro.site)
+  : undefined;
+const marca = tieneLogo(servidor) ? servidor.logo! : null;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloPagina}</title>
+    <meta name="description" content={servidor.descripcion} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={tituloPagina} />
+    <meta property="og:description" content={servidor.descripcion} />
+    <meta property="og:url" content={canonical} />
+    {ogImagen && <meta property="og:image" content={ogImagen} />}
+    <link rel="icon" href={servidor.logo ?? '/favicon.svg'} />
+    <style set:html={rootStyle}></style>
+  </head>
+  <body>
+    <header class="cabecera contenedor">
+      <a class="cabecera__marca" href="/">
+        {marca ? <img src={marca} alt={servidor.nombre} height="32" /> : servidor.nombre}
+      </a>
+      <a class="cabecera__discord" href={servidor.urlDiscord}>Discord</a>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="pie contenedor">
+      {servidor.creditoPlantilla && (
+        <p>
+          Hecho con la <a href="https://vidaenleonida.com" rel="noopener">plantilla de VidaEnLeonida.com</a>
+        </p>
+      )}
+    </footer>
+  </body>
+</html>
