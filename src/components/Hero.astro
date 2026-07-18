@@ -1,0 +1,15 @@
+---
+import { servidor } from '../config/servidor';
+import { tieneImagenHero, gradienteHero } from '../lib/fallbacks';
+
+const fondoHero = tieneImagenHero(servidor)
+  ? `url("${servidor.imagenHero}")`
+  : gradienteHero(servidor.colores);
+---
+<section class="hero" style={`--fondo-hero: ${fondoHero}`}>
+  <div class="hero__contenido">
+    <h1 class="hero__titulo">{servidor.nombre}</h1>
+    <p class="hero__lema">{servidor.lema}</p>
+    <a class="hero__cta" href={servidor.urlDiscord}>Únete al Discord</a>
+  </div>
+</section>
