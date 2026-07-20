@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { servidor } from '../config/servidor';
 import { variablesTema, estiloInline } from '../lib/tokens';
 import { tieneLogo, tieneImagenHero } from '../lib/fallbacks';
+import { validarColores } from '../lib/colores';
 import Redes from '../components/Redes.astro';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 }
 const { titulo } = Astro.props;
 
+validarColores(servidor.colores);
 const rootStyle = `:root{${estiloInline(variablesTema(servidor))}}`;
 const tituloPagina = titulo
   ? `${titulo} · ${servidor.nombre}`
