@@ -1,4 +1,4 @@
-# plantilla-servidor-rp — plantilla web para servidores FiveM/GTA RP
+# plantilla-servidor-rp: plantilla web para servidores FiveM/GTA RP
 
 [Read me in English](README.md)
 
@@ -53,8 +53,8 @@ en Cloudflare. Sin base de datos, sin JavaScript de cliente, sin coste.
 
    [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/manguezpls-dotcom/plantilla-servidor-rp)
 
-   Cloudflare clona el repositorio en tu cuenta y lo construye: cada
-   `git push` vuelve a desplegar sola.
+   Cloudflare clona el repositorio en tu cuenta y lo construye: con cada
+   `git push` se vuelve a desplegar.
 
 ## Ejecutar en local
 
