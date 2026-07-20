@@ -36,7 +36,7 @@ export const servidor: ConfigServidor = {
   urlDiscord: 'https://discord.gg/leonidarp',
   urlConexion: 'https://cfx.re/join/abcd12',
   colores: {
-    primario: '#e0355a',
+    primario: '#c9224a',
     fondo: '#0f1117',
     texto: '#f5f6fa',
   },
