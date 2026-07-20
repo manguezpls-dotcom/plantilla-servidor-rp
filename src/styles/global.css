@@ -28,6 +28,23 @@ a { color: var(--color-primario); }
   padding-inline: 1.25rem;
 }
 
+/* Botón primario (primitivo compartido) */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--radio);
+  background: var(--color-primario);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.boton:hover { filter: brightness(1.08); }
+.boton--compacto {
+  padding: 0.55rem 1rem;
+  font-weight: 600;
+}
+
 /* Header */
 .cabecera {
   display: flex;
@@ -41,16 +58,6 @@ a { color: var(--color-primario); }
   font-size: 1.25rem;
   letter-spacing: -0.02em;
   color: var(--color-texto);
-  text-decoration: none;
-}
-.cabecera__discord {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.55rem 1rem;
-  border-radius: var(--radio);
-  background: var(--color-primario);
-  color: #fff;
-  font-weight: 600;
   text-decoration: none;
 }
 
@@ -90,18 +97,7 @@ a { color: var(--color-primario); }
   opacity: 0.9;
   margin: 0 0 2rem;
 }
-.hero__cta {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.9rem 1.6rem;
-  border-radius: var(--radio);
-  background: var(--color-primario);
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.05rem;
-  text-decoration: none;
-}
-.hero__cta:hover { filter: brightness(1.08); }
+.hero__cta { font-size: 1.05rem; }
 
 /* Footer */
 .pie {
@@ -130,18 +126,6 @@ a { color: var(--color-primario); }
   padding-block: 4rem;
   text-align: center;
 }
-.cta-discord__boton {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.9rem 1.6rem;
-  border-radius: var(--radio);
-  background: var(--color-primario);
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-}
-.cta-discord__boton:hover { filter: brightness(1.08); }
-
 /* Características */
 .caracteristicas__grid {
   display: grid;
