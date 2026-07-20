@@ -19,9 +19,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Enlaces de texto sobre el fondo: se aclara un poco el primario para
-   mantener AA (4.5:1) también en enlaces de peso normal sobre --color-fondo. */
-a { color: color-mix(in srgb, var(--color-primario) 75%, white 25%); }
+/* Enlaces de texto sobre el fondo: se mezcla el primario hacia --color-texto
+   (no hacia blanco fijo) para mantener AA (4.5:1) sin asumir un fondo oscuro:
+   sigue la polaridad de la config, igual que el ajuste de .pie. */
+a { color: color-mix(in srgb, var(--color-primario) 75%, var(--color-texto) 25%); }
 
 .contenedor {
   width: 100%;
