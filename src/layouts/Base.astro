@@ -1,9 +1,11 @@
 ---
 import '../styles/global.css';
+import { getCollection } from 'astro:content';
 import { servidor } from '../config/servidor';
 import { variablesTema, estiloInline } from '../lib/tokens';
 import { tieneLogo, tieneImagenHero } from '../lib/fallbacks';
 import { validarColores } from '../lib/colores';
+import { redesActivas } from '../lib/redes';
 import Redes from '../components/Redes.astro';
 
 interface Props {
@@ -22,6 +24,9 @@ const ogImagen = tieneImagenHero(servidor)
   : undefined;
 const marca = tieneLogo(servidor) ? servidor.logo! : null;
 const favicon = tieneLogo(servidor) ? servidor.logo! : '/favicon.svg';
+const hayNormas = (await getCollection('normas')).length > 0;
+const hayStaff = servidor.staff.length > 0;
+const hayPie = redesActivas(servidor.redes).length > 0 || servidor.creditoPlantilla;
 ---
 <!doctype html>
 <html lang="es">
@@ -46,8 +51,8 @@ const favicon = tieneLogo(servidor) ? servidor.logo! : '/favicon.svg';
       </a>
       <nav class="cabecera__nav" aria-label="Principal">
         <a class="cabecera__enlace" href="/">Inicio</a>
-        <a class="cabecera__enlace" href="/normas/">Normas</a>
-        <a class="cabecera__enlace" href="/staff/">Staff</a>
+        {hayNormas && <a class="cabecera__enlace" href="/normas/">Normas</a>}
+        {hayStaff && <a class="cabecera__enlace" href="/staff/">Staff</a>}
       </nav>
       <a class="boton boton--compacto cabecera__discord" href={servidor.urlDiscord}>Discord</a>
     </header>
@@ -56,13 +61,15 @@ const favicon = tieneLogo(servidor) ? servidor.logo! : '/favicon.svg';
       <slot />
     </main>
 
-    <footer class="pie contenedor">
-      <Redes />
-      {servidor.creditoPlantilla && (
-        <p>
-          Hecho con la <a href="https://vidaenleonida.com" rel="noopener">plantilla de VidaEnLeonida.com</a>
-        </p>
-      )}
-    </footer>
+    {hayPie && (
+      <footer class="pie contenedor">
+        <Redes />
+        {servidor.creditoPlantilla && (
+          <p>
+            Hecho con la <a href="https://vidaenleonida.com" rel="noopener">plantilla de VidaEnLeonida.com</a>
+          </p>
+        )}
+      </footer>
+    )}
   </body>
 </html>
