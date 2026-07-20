@@ -40,6 +40,8 @@ const hayPie = redesActivas(servidor.redes).length > 0 || servidor.creditoPlanti
     <meta property="og:description" content={servidor.descripcion} />
     <meta property="og:url" content={canonical} />
     {ogImagen && <meta property="og:image" content={ogImagen} />}
+    <meta name="theme-color" content={servidor.colores.fondo} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" href="/favicon.svg" />
     <style set:html={rootStyle}></style>
   </head>
