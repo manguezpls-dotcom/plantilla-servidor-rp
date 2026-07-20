@@ -23,7 +23,6 @@ const ogImagen = tieneImagenHero(servidor)
   ? new URL(servidor.imagenHero!, Astro.site)
   : undefined;
 const marca = tieneLogo(servidor) ? servidor.logo! : null;
-const favicon = tieneLogo(servidor) ? servidor.logo! : '/favicon.svg';
 const hayNormas = (await getCollection('normas')).length > 0;
 const hayStaff = servidor.staff.length > 0;
 const hayPie = redesActivas(servidor.redes).length > 0 || servidor.creditoPlantilla;
@@ -41,7 +40,7 @@ const hayPie = redesActivas(servidor.redes).length > 0 || servidor.creditoPlanti
     <meta property="og:description" content={servidor.descripcion} />
     <meta property="og:url" content={canonical} />
     {ogImagen && <meta property="og:image" content={ogImagen} />}
-    <link rel="icon" href={favicon} />
+    <link rel="icon" href="/favicon.svg" />
     <style set:html={rootStyle}></style>
   </head>
   <body>
