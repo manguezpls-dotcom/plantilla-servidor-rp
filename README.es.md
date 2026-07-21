@@ -13,7 +13,7 @@ en Cloudflare. Sin base de datos, sin JavaScript de cliente, sin coste.
 ## Qué incluye
 
 - Hero con el nombre de tu servidor, lema y llamada a la acción (cambia
-  automáticamente entre "Solicitar whitelist" y "Conectar" según tu
+  automáticamente entre un CTA de solicitud y un CTA de conexión según tu
   configuración)
 - Cuadrícula de características, pasos de cómo entrar, página de staff,
   redes sociales
@@ -95,8 +95,13 @@ todos los ficheros, el enlace de Normas desaparece del menú.
 - **¿Puedo quitar el crédito de "hecho con"?** Sí: pon
   `creditoPlantilla: false`. Se agradece un enlace de vuelta, pero no es
   obligatorio (licencia MIT).
-- **¿Dominio propio?** Añádelo a tu Worker desde el panel de Cloudflare
-  (Workers & Pages → tu worker → Domains & Routes).
+- **¿Los textos de la interfaz están en español?** Sí, los textos fijos de
+  la interfaz (menú, títulos de sección, botones de CTA) están escritos en
+  español directamente en los componentes, ya que la demo está pensada para
+  una comunidad hispanohablante. Para lectores en español esto no es un
+  problema, pero si quieres cambiarlos, viven en `src/components/`
+  (sobre todo `Base.astro` para el menú) y en `src/lib/entrada.ts` para el
+  texto del CTA.
 
 ## Licencia
 

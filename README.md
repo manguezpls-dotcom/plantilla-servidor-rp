@@ -12,8 +12,8 @@ client-side JavaScript, no cost.
 
 ## What you get
 
-- Hero with your name, tagline and call to action (auto-switches between
-  "Apply for whitelist" and "Connect" depending on your config)
+- Hero with your name, tagline and call to action (auto-switches between an
+  apply CTA and a connect CTA depending on your config)
 - Features grid, how-to-join steps, staff page, social links
 - Rules page generated from Markdown files, with a sticky side index
 - FAQ with native accordions + `FAQPage` JSON-LD for Google rich results
@@ -88,6 +88,13 @@ disappears from the nav.
   A link back is appreciated but not required (MIT license).
 - **Custom domain?** Add it to your Worker from the Cloudflare dashboard
   (Workers & Pages → your worker → Domains & Routes).
+- **Is the UI in English?** The fixed UI labels (nav, section titles, CTA
+  buttons) are hardcoded in Spanish, since the demo is built for a
+  Spanish-speaking community. Your own content comes from the config, but
+  those labels live in the components (`src/components/`, notably
+  `Base.astro` for the nav and `src/lib/entrada.ts` for the CTA text) and
+  you'll need to edit them by hand in your fork if you want another
+  language.
 
 ## License
 

@@ -17,7 +17,7 @@ No database, no client-side JavaScript, nothing to maintain.
 ## Features
 
 - Hero + features + how-to-join + rules + staff + FAQ + socials
-- The join CTA adapts: whitelist servers get "Apply", open servers get "Connect"
+- The join CTA adapts: whitelist servers get an "apply" button, open servers a "connect" button (labels in Spanish, see note below)
 - Rules page generated from Markdown files with a side index
 - FAQ ships `FAQPage` structured data (Google rich results)
 - SEO done for you: canonical, Open Graph, sitemap, robots.txt
@@ -31,8 +31,11 @@ Fork → edit `src/config/servidor.ts` → `npm run deploy` (Cloudflare Workers,
 free tier). There's also a "Deploy to Workers" button if you don't want to
 touch a terminal. Full step-by-step guide (EN/ES) in the README.
 
-The demo content is in Spanish (my community is Spanish-speaking) but every
-string comes from your config, so the site is whatever language you write.
+The demo content and the UI labels (nav, section titles, buttons) are in
+Spanish, since my community is Spanish-speaking. Your own content all comes
+from the config, and the fixed labels are a handful of strings in the
+components, easy to change in your fork. If there's interest, i18n of those
+labels is the first thing I'd add.
 
 MIT licensed. Keep the footer credit or remove it (`creditoPlantilla: false`),
 up to you. Feedback and PRs welcome.
