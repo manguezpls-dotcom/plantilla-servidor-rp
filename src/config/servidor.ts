@@ -1,7 +1,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 //  CONFIGURACIÓN DE TU SERVIDOR
-//  Este es el ÚNICO fichero que necesitas editar. Cambia los valores por los de
-//  tu servidor, haz push y Cloudflare Pages publicará tu web.
+//  Este es el fichero que necesitas editar: cambia los valores por los de tu
+//  servidor y despliega gratis en Cloudflare con `npm run deploy` (Workers).
+//  Recuerda también poner la URL de TU web en `site` (astro.config.mjs) para
+//  que los enlaces canónicos y las tarjetas al compartir apunten a tu dominio.
 //  Regla de oro: todo lo opcional degrada con elegancia. Si no rellenas una
 //  sección, simplemente no se muestra; si no pones logo o imagen, se genera un
 //  respaldo con tus colores. La plantilla nunca se ve "rota".
@@ -34,7 +36,7 @@ export const servidor: ConfigServidor = {
   urlDiscord: 'https://discord.gg/leonidarp',
   urlConexion: 'https://cfx.re/join/abcd12',
   colores: {
-    primario: '#e0355a',
+    primario: '#c9224a',
     fondo: '#0f1117',
     texto: '#f5f6fa',
   },

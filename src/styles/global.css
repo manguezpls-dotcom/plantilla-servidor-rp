@@ -19,13 +19,33 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--color-primario); }
+/* Enlaces de texto sobre el fondo: se mezcla el primario hacia --color-texto
+   (no hacia blanco fijo) para mantener AA (4.5:1) sin asumir un fondo oscuro:
+   sigue la polaridad de la config, igual que el ajuste de .pie. */
+a { color: color-mix(in srgb, var(--color-primario) 75%, var(--color-texto) 25%); }
 
 .contenedor {
   width: 100%;
   max-width: var(--ancho-max);
   margin-inline: auto;
   padding-inline: 1.25rem;
+}
+
+/* Botón primario (primitivo compartido) */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--radio);
+  background: var(--color-primario);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.boton:hover { filter: brightness(1.08); }
+.boton--compacto {
+  padding: 0.55rem 1rem;
+  font-weight: 600;
 }
 
 /* Header */
@@ -41,16 +61,6 @@ a { color: var(--color-primario); }
   font-size: 1.25rem;
   letter-spacing: -0.02em;
   color: var(--color-texto);
-  text-decoration: none;
-}
-.cabecera__discord {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.55rem 1rem;
-  border-radius: var(--radio);
-  background: var(--color-primario);
-  color: #fff;
-  font-weight: 600;
   text-decoration: none;
 }
 
@@ -90,25 +100,18 @@ a { color: var(--color-primario); }
   opacity: 0.9;
   margin: 0 0 2rem;
 }
-.hero__cta {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.9rem 1.6rem;
-  border-radius: var(--radio);
-  background: var(--color-primario);
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.05rem;
-  text-decoration: none;
-}
-.hero__cta:hover { filter: brightness(1.08); }
+.hero__cta { font-size: 1.05rem; }
 
 /* Footer */
 .pie {
   padding-block: 2.5rem;
   text-align: center;
   font-size: 0.9rem;
-  opacity: 0.75;
+  /* Antes se atenuaba con `opacity`, pero eso también atenúa los enlaces
+     dentro (composición de capa) y rompía el contraste AA. Se atenúa solo
+     el texto vía `color`; los enlaces mantienen su propio color a opacidad
+     plena. */
+  color: color-mix(in srgb, var(--color-texto) 75%, var(--color-fondo));
 }
 .pie a { font-weight: 600; }
 
@@ -130,18 +133,6 @@ a { color: var(--color-primario); }
   padding-block: 4rem;
   text-align: center;
 }
-.cta-discord__boton {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.9rem 1.6rem;
-  border-radius: var(--radio);
-  background: var(--color-primario);
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-}
-.cta-discord__boton:hover { filter: brightness(1.08); }
-
 /* Características */
 .caracteristicas__grid {
   display: grid;
@@ -249,8 +240,11 @@ a { color: var(--color-primario); }
   top: 1.5rem;
 }
 .normas__indice ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
-.normas__indice a { text-decoration: none; opacity: 0.85; }
-.normas__indice a:hover { opacity: 1; }
+/* Sin `opacity`: dimía el enlace por debajo del contraste AA (composición
+   de capa). El estado de reposo usa el color de enlace a opacidad plena;
+   el hover se marca con subrayado en vez de un cambio de opacidad. */
+.normas__indice a { text-decoration: none; }
+.normas__indice a:hover { text-decoration: underline; }
 .norma { scroll-margin-top: 1.5rem; margin-bottom: 2.5rem; }
 .norma h2 { margin-top: 0; }
 

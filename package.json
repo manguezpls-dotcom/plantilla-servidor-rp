@@ -13,6 +13,7 @@
     "deploy": "astro build && npx wrangler deploy"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^5.10.0"
   },
   "devDependencies": {
