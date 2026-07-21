@@ -16,15 +16,15 @@ export interface ConfigServidor {
   urlDiscord: string;                // invitación permanente
   urlConexion?: string;              // cfx.re/join/xxxxx (opcional)
   colores: { primario: string; fondo: string; texto: string };  // hex
-  logo?: string;                     // ruta en /public; fallback: wordmark tipográfico
-  imagenHero?: string;               // ruta en /public; fallback: gradiente con el color primario
+  logo?: string;                     // path in /public; fallback: wordmark tipográfico
+  imagenHero?: string;               // path in /public; fallback: gradiente con el color primario
   caracteristicas: { titulo: string; texto: string }[];   // 3-6 tarjetas
   pasosEntrada: string[];            // "cómo entrar", 3-5 pasos
   requiereWhitelist: boolean;        // cambia el CTA: "Solicitar plaza" vs "Conectar"
-  staff: { nombre: string; rol: string; avatar?: string }[];
+  staff: { nombre: string; rol: string; avatar?: string }[]; //avatar's path in /public, call them as it is (avatar: /user1.jpg)
   faq: { pregunta: string; respuesta: string }[];
   redes?: { x?: string; tiktok?: string; youtube?: string; instagram?: string };
-  creditoPlantilla: boolean;         // footer "plantilla de VidaEnLeonida.com" (por defecto true)
+  creditoPlantilla: boolean;         // footer "plantilla de VidaEnLeonida.com" (default true)
 }
 
 export const servidor: ConfigServidor = {
@@ -55,8 +55,8 @@ export const servidor: ConfigServidor = {
   ],
   requiereWhitelist: true,
   staff: [
-    { nombre: 'Álex', rol: 'Fundador' },
-    { nombre: 'Marina', rol: 'Admin' },
+    { nombre: 'Álex', rol: 'Fundador', avatar: '/user1.jpg' },
+    { nombre: 'Marina', rol: 'Admin', avatar: '/user2.jpg' },
     { nombre: 'Dario', rol: 'Soporte' },
   ],
   faq: [

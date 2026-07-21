@@ -57,7 +57,17 @@ en Cloudflare. Sin base de datos, sin JavaScript de cliente, sin coste.
    `git push` se vuelve a desplegar.
 
 ## Ejecutar en local
+Para ejecutar localmente el repo, primero debes clonarlo desde Github en tu directorio
+Copia la URL en el botón verde que dice "Code" en la página principal del repo
+![Clone](docs/capturas/clone.jpg)
 
+Y ejecutas el comando de clonación en tu terminal, apuntando a tu directorio
+```bash
+cd /<your-project>
+git clone https://github.com/manguezpls-dotcom/plantilla-servidor-rp.git
+```
+
+Y lo arrancas localmente
 ```bash
 npm install
 npm run dev        # http://localhost:4321
