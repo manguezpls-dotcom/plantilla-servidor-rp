@@ -34,7 +34,7 @@ touch a terminal. Full step-by-step guide (EN/ES) in the README.
 The demo content and the UI labels (nav, section titles, buttons) are in
 Spanish, since my community is Spanish-speaking. Your own content all comes
 from the config, and the fixed labels are a handful of strings in the
-components, easy to change in your fork. If there's interest, i18n of those
+layout and components, easy to change in your fork. If there's interest, i18n of those
 labels is the first thing I'd add.
 
 MIT licensed. Keep the footer credit or remove it (`creditoPlantilla: false`),

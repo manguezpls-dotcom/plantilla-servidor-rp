@@ -97,11 +97,13 @@ todos los ficheros, el enlace de Normas desaparece del menú.
   obligatorio (licencia MIT).
 - **¿Los textos de la interfaz están en español?** Sí, los textos fijos de
   la interfaz (menú, títulos de sección, botones de CTA) están escritos en
-  español directamente en los componentes, ya que la demo está pensada para
-  una comunidad hispanohablante. Para lectores en español esto no es un
-  problema, pero si quieres cambiarlos, viven en `src/components/`
-  (sobre todo `Base.astro` para el menú) y en `src/lib/entrada.ts` para el
-  texto del CTA.
+  español directamente en el código, ya que la demo está pensada para una
+  comunidad hispanohablante. Para lectores en español esto no es un
+  problema, pero si quieres cambiarlos, viven en varios ficheros: el menú
+  en `src/layouts/Base.astro`; los títulos de sección y los botones
+  "Únete al Discord" en `src/components/` (`Hero.astro`, `CtaDiscord.astro`
+  y los componentes de sección); y el texto del CTA de solicitar o
+  conectar en `src/lib/entrada.ts`.
 
 ## Licencia
 

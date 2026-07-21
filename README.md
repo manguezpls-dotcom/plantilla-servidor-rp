@@ -91,10 +91,12 @@ disappears from the nav.
 - **Is the UI in English?** The fixed UI labels (nav, section titles, CTA
   buttons) are hardcoded in Spanish, since the demo is built for a
   Spanish-speaking community. Your own content comes from the config, but
-  those labels live in the components (`src/components/`, notably
-  `Base.astro` for the nav and `src/lib/entrada.ts` for the CTA text) and
-  you'll need to edit them by hand in your fork if you want another
-  language.
+  those labels live in a few different files: the nav in
+  `src/layouts/Base.astro`; section titles and the "Únete al Discord"
+  buttons in `src/components/` (`Hero.astro`, `CtaDiscord.astro` and the
+  section components); and the apply/connect CTA text in
+  `src/lib/entrada.ts`. You'll need to edit them by hand in your fork if you
+  want another language.
 
 ## License
 
