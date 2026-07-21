@@ -65,9 +65,9 @@ export const servidor: ConfigServidor = {
     { pregunta: '¿Es gratis?', respuesta: 'Sí. Hay ventajas cosméticas opcionales que no dan ventaja de juego.' },
   ],
   redes: {
-    x: 'https://x.com/leonidarp',
-    tiktok: 'https://tiktok.com/@leonidarp',
-    youtube: 'https://youtube.com/@leonidarp',
+    x: 'https://x.com/vidaenleonida',
+    tiktok: 'https://tiktok.com/@vidaenleonida',
+    youtube: 'https://youtube.com/@vidaenleonida',
   },
   creditoPlantilla: true,
 };
