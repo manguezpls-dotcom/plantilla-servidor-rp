@@ -51,6 +51,7 @@ client-side JavaScript, no cost.
 ## Run locally
 To run locally the repo, first you have to clone it from Github to your project folder
 Get the URL in the "Code" green button at the main screen of the repo
+
 ![Clone](docs/capturas/clone.jpg)
 
 Go to your terminal and clone it
