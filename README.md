@@ -74,6 +74,12 @@ number prefix included) becomes the anchor in the side index, e.g.
 `01-respeto.md` links to `#01-respeto`. Delete all files and the Rules link
 disappears from the nav.
 
+## Screenshots
+
+| Rules page | Mobile |
+|---|---|
+| ![Rules](docs/capturas/normas.png) | ![Mobile](docs/capturas/movil.png) |
+
 ## FAQ
 
 - **Do I need to know how to code?** No. The config file is plain values with

@@ -82,6 +82,12 @@ El acoso, la discriminación o el comportamiento tóxico...
 lateral, por ejemplo, `01-respeto.md` enlaza a `#01-respeto`. Si borras
 todos los ficheros, el enlace de Normas desaparece del menú.
 
+## Capturas
+
+| Página de normas | Móvil |
+|---|---|
+| ![Normas](docs/capturas/normas.png) | ![Móvil](docs/capturas/movil.png) |
+
 ## Preguntas frecuentes
 
 - **¿Necesito saber programar?** No. El fichero de configuración son valores
